@@ -32,6 +32,15 @@ links.addEventListener("click", (e) => {
   if (e.target.closest("a")) closeMenu();
 });
 
+document.querySelectorAll('a[href="#top"]').forEach((a) => {
+  a.addEventListener("click", (e) => {
+    e.preventDefault();
+    closeMenu();
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+    history.replaceState(null, "", location.pathname + location.search);
+  });
+});
+
 document.querySelectorAll(".stagger").forEach((group) => {
   [...group.children].forEach((el, i) => el.style.setProperty("--d", `${i * 0.1}s`));
 });
