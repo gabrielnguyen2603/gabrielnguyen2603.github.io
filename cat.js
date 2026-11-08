@@ -6,10 +6,10 @@
   if (!finePointer || reduceMotion) return;
 
   const SIZE = 32;
-  const BASE_SPEED = 380;
-  const CATCH_UP = 5;
+  const BASE_SPEED = 240;
+  const CATCH_UP = 1.5;
   const STOP_DISTANCE = 30;
-  const FRAME_MS = 70;
+  const FRAME_MS = 90;
   const HEART_EVERY_MS = 2600;
   const TRAIL_COLORS = ["#ff6b5b", "#ffb703", "#2ec4b6", "#4cc9f0", "#9b5de5", "#f15bb5"];
   const TRAIL_SPACING = 18;
