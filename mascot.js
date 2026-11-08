@@ -11,21 +11,22 @@
   const shines = [...svg.querySelectorAll(".m-shine")];
   const pixels = banner.querySelector(".pixels");
 
-  const COLORS = ["#14213d", "#ff6b5b", "#ffb703", "#2ec4b6", "#9b5de5", "#4cc9f0", "#f15bb5", "#ffffff", "#efe6d2"];
-  const CELL = 56;
+  const LEFT_COLORS = ["#5fed83", "#5fed83", "#ffffff"];
+  const RIGHT_COLORS = ["#5fed83", "#5a3ff5", "#f43f7a", "#b08cff", "#bf5600", "#ffffff", "#f5f0eb", "#1c1428"];
+  const CELL = 64;
 
   function buildPixels() {
     const cols = Math.ceil(banner.clientWidth / CELL);
     const rows = Math.ceil(banner.clientHeight / CELL);
     pixels.style.gridTemplateColumns = `repeat(${cols}, ${CELL}px)`;
     pixels.innerHTML = "";
-    const center = (cols - 1) / 2;
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
         const cell = document.createElement("span");
-        const edge = Math.abs(c - center) / Math.max(center, 1);
-        if (Math.random() < 0.12 + edge * 0.6) {
-          cell.style.background = COLORS[Math.floor(Math.random() * COLORS.length)];
+        const t = c / Math.max(cols - 1, 1);
+        if (Math.random() < 0.12 + 0.82 * Math.pow(t, 1.4)) {
+          const palette = t < 0.5 ? LEFT_COLORS : RIGHT_COLORS;
+          cell.style.background = palette[Math.floor(Math.random() * palette.length)];
           cell.style.animationDelay = `${(Math.random() * 6).toFixed(2)}s`;
           cell.style.animationDuration = `${(4 + Math.random() * 4).toFixed(2)}s`;
           if (!reduceMotion && Math.random() < 0.35) cell.className = "twinkle";
@@ -83,7 +84,7 @@
     face.setAttribute("transform", `translate(${lookX * 14} ${lookY * 10})`);
     eyesGroup.setAttribute("transform", `translate(${lookX * 6} ${lookY * 5})`);
     eyes.forEach((eye) => {
-      eye.setAttribute("transform", `translate(0 165) scale(1 ${blink}) translate(0 -165)`);
+      eye.setAttribute("transform", `translate(0 158) scale(1 ${blink}) translate(0 -158)`);
     });
     shines.forEach((s) => s.setAttribute("transform", `translate(${lookX * 9} ${lookY * 8})`));
 
