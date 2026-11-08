@@ -787,6 +787,33 @@ h3 {
   color: var(--cream);
 }
 
+/* Cursor cat */
+.cat,
+.cat-ghost {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  image-rendering: pixelated;
+  will-change: transform;
+}
+.cat {
+  z-index: 999;
+  background-image: url("assets/oneko.gif");
+}
+.cat-ghost {
+  opacity: 0;
+  -webkit-mask-image: url("assets/oneko.gif");
+  mask-image: url("assets/oneko.gif");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 256px 128px;
+  mask-size: 256px 128px;
+  mask-mode: alpha;
+}
+
 /* Scroll progress */
 .progress {
   position: fixed;
