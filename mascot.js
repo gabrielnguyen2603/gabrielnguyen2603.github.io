@@ -11,25 +11,28 @@
   const shines = [...svg.querySelectorAll(".m-shine")];
   const pixels = banner.querySelector(".pixels");
 
-  const LEFT_COLORS = ["#5fed83", "#5fed83", "#ffffff"];
-  const RIGHT_COLORS = ["#5fed83", "#5a3ff5", "#f43f7a", "#b08cff", "#bf5600", "#ffffff", "#f5f0eb", "#1c1428"];
-  const CELL = 64;
+  const EDGE_COLORS = ["#5fed83", "#5fed83", "#5fed83", "#ffffff"];
+  const DENSE_COLORS = ["#5fed83", "#5a3ff5", "#f43f7a", "#b08cff", "#bf5600", "#ffffff", "#f5f0eb", "#1c1428"];
+  const ROWS = 6;
 
   function buildPixels() {
-    const cols = Math.ceil(banner.clientWidth / CELL);
-    const rows = Math.ceil(banner.clientHeight / CELL);
-    pixels.style.gridTemplateColumns = `repeat(${cols}, ${CELL}px)`;
+    const size = banner.clientHeight / ROWS;
+    const cols = Math.ceil(banner.clientWidth / size);
+    pixels.style.gridTemplateColumns = `repeat(${cols}, ${size}px)`;
+    pixels.style.gridAutoRows = `${size}px`;
     pixels.innerHTML = "";
-    for (let r = 0; r < rows; r++) {
+    for (let r = 0; r < ROWS; r++) {
+      const start = 0.54 - 0.2 * (r / (ROWS - 1));
       for (let c = 0; c < cols; c++) {
         const cell = document.createElement("span");
-        const t = c / Math.max(cols - 1, 1);
-        if (Math.random() < 0.12 + 0.82 * Math.pow(t, 1.4)) {
-          const palette = t < 0.5 ? LEFT_COLORS : RIGHT_COLORS;
+        const x = c / Math.max(cols - 1, 1);
+        const depth = (x - start) / (1 - start);
+        if (depth >= 0 && Math.random() < 0.35 + 0.6 * depth) {
+          const palette = depth < 0.35 ? EDGE_COLORS : DENSE_COLORS;
           cell.style.background = palette[Math.floor(Math.random() * palette.length)];
           cell.style.animationDelay = `${(Math.random() * 6).toFixed(2)}s`;
           cell.style.animationDuration = `${(4 + Math.random() * 4).toFixed(2)}s`;
-          if (!reduceMotion && Math.random() < 0.35) cell.className = "twinkle";
+          if (!reduceMotion && Math.random() < 0.12) cell.className = "twinkle";
         }
         pixels.appendChild(cell);
       }
@@ -80,11 +83,11 @@
     lookX += (targetX - lookX) * ease;
     lookY += (targetY - lookY) * ease;
 
-    head.setAttribute("transform", `rotate(${lookX * 8} 200 260) translate(${lookX * 10} ${lookY * 6})`);
+    head.setAttribute("transform", `rotate(${lookX * 8} 200 270) translate(${lookX * 10} ${lookY * 6})`);
     face.setAttribute("transform", `translate(${lookX * 14} ${lookY * 10})`);
     eyesGroup.setAttribute("transform", `translate(${lookX * 6} ${lookY * 5})`);
     eyes.forEach((eye) => {
-      eye.setAttribute("transform", `translate(0 158) scale(1 ${blink}) translate(0 -158)`);
+      eye.setAttribute("transform", `translate(0 166) scale(1 ${blink}) translate(0 -166)`);
     });
     shines.forEach((s) => s.setAttribute("transform", `translate(${lookX * 9} ${lookY * 8})`));
 
