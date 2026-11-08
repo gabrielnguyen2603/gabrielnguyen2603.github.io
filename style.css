@@ -275,16 +275,12 @@ h3 {
   z-index: -1;
 }
 .avatar {
-  width: 76px;
-  height: 76px;
-  display: grid;
-  place-items: center;
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
   border-radius: 50%;
-  background: var(--coral);
-  color: var(--navy);
-  font-family: var(--serif);
-  font-size: 1.7rem;
-  font-weight: 700;
+  border: 3px solid var(--coral);
+  background: var(--cream);
   margin-bottom: 1.1rem;
 }
 .card-name {
