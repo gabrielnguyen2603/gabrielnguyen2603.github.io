@@ -83,13 +83,13 @@
     lookX += (targetX - lookX) * ease;
     lookY += (targetY - lookY) * ease;
 
-    head.setAttribute("transform", `rotate(${lookX * 8} 200 280) translate(${lookX * 10} ${lookY * 6})`);
+    head.setAttribute("transform", `rotate(${lookX * 8} 200 270) translate(${lookX * 10} ${lookY * 6})`);
     face.setAttribute("transform", `translate(${lookX * 14} ${lookY * 10})`);
     eyesGroup.setAttribute("transform", `translate(${lookX * 6} ${lookY * 5})`);
     eyes.forEach((eye) => {
-      eye.setAttribute("transform", `translate(0 180) scale(1 ${blink}) translate(0 -180)`);
+      eye.setAttribute("transform", `translate(0 166) scale(1 ${blink}) translate(0 -166)`);
     });
-    shines.forEach((s) => s.setAttribute("transform", `translate(${lookX * 4} ${lookY * 4})`));
+    shines.forEach((s) => s.setAttribute("transform", `translate(${lookX * 9} ${lookY * 8})`));
 
     requestAnimationFrame(frame);
   }

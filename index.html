@@ -45,58 +45,71 @@
         <div class="pixels"></div>
         <svg class="mascot" viewBox="0 0 400 300" role="presentation">
           <defs>
-            <radialGradient id="m-mochi" cx="42%" cy="30%" r="75%">
-              <stop offset="0%" stop-color="#ffffff" />
-              <stop offset="75%" stop-color="#fffaf4" />
-              <stop offset="100%" stop-color="#f3e9e2" />
+            <radialGradient id="m-fur" cx="40%" cy="20%" r="85%">
+              <stop offset="0%" stop-color="#3d3158" />
+              <stop offset="45%" stop-color="#1f1833" />
+              <stop offset="100%" stop-color="#140f24" />
             </radialGradient>
+            <linearGradient id="m-face" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ffc9df" />
+              <stop offset="40%" stop-color="#ffa6bf" />
+              <stop offset="75%" stop-color="#ff7d8a" />
+              <stop offset="100%" stop-color="#f7688f" />
+            </linearGradient>
+            <radialGradient id="m-face-light" cx="50%" cy="15%" r="55%">
+              <stop offset="0%" stop-color="#fff" stop-opacity="0.5" />
+              <stop offset="100%" stop-color="#fff" stop-opacity="0" />
+            </radialGradient>
+            <radialGradient id="m-eye" cx="45%" cy="35%" r="70%">
+              <stop offset="0%" stop-color="#4a3596" />
+              <stop offset="70%" stop-color="#21154a" />
+              <stop offset="100%" stop-color="#140c2e" />
+            </radialGradient>
+            <filter id="m-blur" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="8" />
+            </filter>
           </defs>
 
-          <g stroke="#3e3232" stroke-width="5" stroke-linejoin="round" fill="url(#m-mochi)">
-            <ellipse class="m-body" cx="200" cy="338" rx="128" ry="80" />
-            <ellipse cx="96" cy="282" rx="24" ry="20" transform="rotate(-30 96 282)" />
-            <ellipse cx="304" cy="282" rx="24" ry="20" transform="rotate(30 304 282)" />
-          </g>
+          <path class="m-body" d="M150 262 C156 286 140 300 84 322 L316 322 C260 300 244 286 250 262 Z" fill="url(#m-fur)" />
 
           <g class="m-head">
-            <g stroke="#3e3232" stroke-width="5" fill="url(#m-mochi)">
-              <circle cx="122" cy="92" r="27" />
-              <circle cx="278" cy="92" r="27" />
-              <path d="M200 76 C286 76 338 130 338 192 C338 252 282 284 200 284 C118 284 62 252 62 192 C62 130 114 76 200 76 Z" />
-            </g>
+            <path d="M120 116 C104 80 90 42 90 22 C90 8 101 4 112 11 C140 30 168 50 184 68 Z" fill="url(#m-fur)" />
+            <path d="M280 116 C296 80 310 42 310 22 C310 8 299 4 288 11 C260 30 232 50 216 68 Z" fill="url(#m-fur)" />
+            <path d="M200 50 C282 50 322 100 324 160 C326 232 282 284 200 284 C118 284 74 232 76 160 C78 100 118 50 200 50 Z" fill="url(#m-fur)" />
 
             <g class="m-face">
-              <g fill="#ffb3c4">
-                <ellipse cx="118" cy="214" rx="27" ry="14" />
-                <ellipse cx="282" cy="214" rx="27" ry="14" />
+              <g fill="none" stroke="#1b1530" stroke-width="3.5" stroke-linecap="round">
+                <path d="M110 212 Q80 206 46 204" />
+                <path d="M110 224 Q82 230 50 242" />
+                <path d="M290 212 Q320 206 354 204" />
+                <path d="M290 224 Q318 230 350 242" />
               </g>
-              <g stroke="#f27c97" stroke-width="2.5" stroke-linecap="round">
-                <line x1="104" y1="219" x2="110" y2="208" />
-                <line x1="115" y1="220" x2="121" y2="209" />
-                <line x1="126" y1="220" x2="132" y2="209" />
-                <line x1="268" y1="219" x2="274" y2="208" />
-                <line x1="279" y1="220" x2="285" y2="209" />
-                <line x1="290" y1="220" x2="296" y2="209" />
-              </g>
+              <path d="M200 80 C258 80 292 102 296 148 C300 194 306 240 262 262 C240 273 222 276 200 276 C178 276 160 273 138 262 C94 240 100 194 104 148 C108 102 142 80 200 80 Z" fill="url(#m-face)" />
+              <path d="M200 80 C258 80 292 102 296 148 C300 194 306 240 262 262 C240 273 222 276 200 276 C178 276 160 273 138 262 C94 240 100 194 104 148 C108 102 142 80 200 80 Z" fill="url(#m-face-light)" />
+              <ellipse cx="128" cy="228" rx="30" ry="18" fill="#ff3355" opacity="0.55" filter="url(#m-blur)" />
+              <ellipse cx="272" cy="228" rx="30" ry="18" fill="#ff3355" opacity="0.55" filter="url(#m-blur)" />
 
               <g class="m-eyes">
                 <g class="m-eye">
-                  <ellipse cx="152" cy="180" rx="13" ry="17" fill="#2b2222" />
+                  <circle cx="152" cy="168" r="33" fill="#e6dcff" />
+                  <circle cx="152" cy="164" r="30" fill="url(#m-eye)" />
                   <g class="m-shine">
-                    <circle cx="156" cy="172" r="5" fill="#fff" />
-                    <circle cx="148" cy="188" r="2.2" fill="#fff" opacity="0.9" />
+                    <circle cx="162" cy="151" r="10" fill="#fff" />
+                    <circle cx="142" cy="176" r="4.5" fill="#fff" opacity="0.85" />
                   </g>
                 </g>
                 <g class="m-eye">
-                  <ellipse cx="248" cy="180" rx="13" ry="17" fill="#2b2222" />
+                  <circle cx="248" cy="168" r="33" fill="#e6dcff" />
+                  <circle cx="248" cy="164" r="30" fill="url(#m-eye)" />
                   <g class="m-shine">
-                    <circle cx="252" cy="172" r="5" fill="#fff" />
-                    <circle cx="244" cy="188" r="2.2" fill="#fff" opacity="0.9" />
+                    <circle cx="258" cy="151" r="10" fill="#fff" />
+                    <circle cx="238" cy="176" r="4.5" fill="#fff" opacity="0.85" />
                   </g>
                 </g>
               </g>
 
-              <path d="M190 210 Q195 217 200 210 Q205 217 210 210" fill="none" stroke="#3e3232" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+              <ellipse cx="200" cy="208" rx="6.5" ry="5" fill="#1b1530" />
+              <path d="M186 224 Q200 234 214 222" fill="none" stroke="#1b1530" stroke-width="3.5" stroke-linecap="round" />
             </g>
           </g>
         </svg>
