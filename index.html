@@ -40,6 +40,69 @@
     </header>
 
     <main id="main">
+      <!-- Mascot banner -->
+      <div class="banner" aria-hidden="true">
+        <div class="pixels"></div>
+        <svg class="mascot" viewBox="0 0 400 300" role="presentation">
+          <defs>
+            <radialGradient id="m-face" cx="50%" cy="30%" r="80%">
+              <stop offset="0%" stop-color="#ffd0dc" />
+              <stop offset="55%" stop-color="#ffa3b5" />
+              <stop offset="100%" stop-color="#ff7b6b" />
+            </radialGradient>
+            <radialGradient id="m-eye" cx="50%" cy="40%" r="60%">
+              <stop offset="0%" stop-color="#4b3a8c" />
+              <stop offset="100%" stop-color="#1f1640" />
+            </radialGradient>
+            <filter id="m-blur" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="6" />
+            </filter>
+          </defs>
+
+          <ellipse class="m-body" cx="200" cy="335" rx="125" ry="95" fill="#1d1a2e" />
+
+          <g class="m-head">
+            <path d="M92 128 L100 26 Q104 12 116 20 L178 72 Z" fill="#1d1a2e" stroke="#1d1a2e" stroke-width="16" stroke-linejoin="round" />
+            <path d="M308 128 L300 26 Q296 12 284 20 L222 72 Z" fill="#1d1a2e" stroke="#1d1a2e" stroke-width="16" stroke-linejoin="round" />
+            <ellipse cx="200" cy="172" rx="128" ry="112" fill="#1d1a2e" />
+
+            <g class="m-face">
+              <g stroke="#1d1a2e" stroke-width="4" stroke-linecap="round">
+                <line x1="96" y1="204" x2="38" y2="194" />
+                <line x1="96" y1="216" x2="42" y2="226" />
+                <line x1="304" y1="204" x2="362" y2="194" />
+                <line x1="304" y1="216" x2="358" y2="226" />
+              </g>
+              <rect x="98" y="98" width="204" height="168" rx="82" fill="url(#m-face)" />
+              <ellipse cx="128" cy="218" rx="26" ry="15" fill="#ff5d7a" opacity="0.45" filter="url(#m-blur)" />
+              <ellipse cx="272" cy="218" rx="26" ry="15" fill="#ff5d7a" opacity="0.45" filter="url(#m-blur)" />
+
+              <g class="m-eyes">
+                <g class="m-eye">
+                  <circle cx="152" cy="166" r="31" fill="#d9ccff" />
+                  <circle cx="152" cy="163" r="28" fill="url(#m-eye)" />
+                  <g class="m-shine">
+                    <circle cx="161" cy="152" r="9" fill="#fff" />
+                    <circle cx="143" cy="174" r="4" fill="#fff" opacity="0.8" />
+                  </g>
+                </g>
+                <g class="m-eye">
+                  <circle cx="248" cy="166" r="31" fill="#d9ccff" />
+                  <circle cx="248" cy="163" r="28" fill="url(#m-eye)" />
+                  <g class="m-shine">
+                    <circle cx="257" cy="152" r="9" fill="#fff" />
+                    <circle cx="239" cy="174" r="4" fill="#fff" opacity="0.8" />
+                  </g>
+                </g>
+              </g>
+
+              <ellipse cx="200" cy="203" rx="7" ry="5" fill="#1d1a2e" />
+              <path d="M182 220 Q200 234 218 216" fill="none" stroke="#1d1a2e" stroke-width="4" stroke-linecap="round" />
+            </g>
+          </g>
+        </svg>
+      </div>
+
       <!-- Hero -->
       <section class="hero">
         <div class="blob blob-coral" aria-hidden="true"></div>
@@ -335,5 +398,6 @@
 
     <script src="main.js"></script>
     <script src="cat.js"></script>
+    <script src="mascot.js"></script>
   </body>
 </html>
