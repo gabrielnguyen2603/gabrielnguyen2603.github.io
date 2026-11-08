@@ -5,21 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Gabriel Nguyen — Business Analytics (Fintech) student at Deakin University, CFA Level 1 candidate and Data Analyst Intern building a career in Internal Audit."
+      content="Gabriel Nguyen, Business Analyst Intern at LeoViAn Capital Fund LP, Business Analytics (Fintech) student at Deakin University and CFA Level 1 candidate."
     />
     <meta name="theme-color" content="#14213d" />
-    <title>Gabriel Nguyen | Data Analytics & Internal Audit</title>
+    <title>Gabriel Nguyen | Business Analyst</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314213d'/%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' font-family='Georgia,serif' font-size='30' font-weight='700' fill='%23f7f1e3'%3EG%3C/text%3E%3Ccircle cx='47' cy='44' r='5' fill='%23ff6b5b'/%3E%3C/svg%3E" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,700&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <div class="progress" aria-hidden="true"></div>
 
     <header class="nav" id="top">
       <div class="container nav-inner">
@@ -29,6 +30,7 @@
         </button>
         <nav id="nav-links" class="nav-links" aria-label="Primary">
           <a href="#about">About</a>
+          <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
           <a href="#skills">Skills</a>
           <a href="#recognition">Recognition</a>
@@ -40,77 +42,140 @@
     <main id="main">
       <!-- Hero -->
       <section class="hero">
+        <div class="blob blob-coral" aria-hidden="true"></div>
+        <div class="blob blob-navy" aria-hidden="true"></div>
+
         <div class="container hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow reveal">Melbourne, VIC · Open to Internal Audit roles</p>
-            <h1 class="reveal">
-              Turning complex financial data into <em>risk insight</em> and better controls.
+            <p class="eyebrow reveal">Business Analyst Intern · LeoViAn Capital Fund LP</p>
+            <h1 class="reveal" style="--d: 0.1s">
+              Turning complex data into
+              <span class="rotator" data-words="clear decisions.|growth strategy.|smarter investments.|measurable value.">clear decisions.</span>
             </h1>
-            <p class="lead reveal">
-              I'm Gabriel Nguyen — a final-year Business Analytics (Fintech) student at Deakin University,
-              CFA Level 1 candidate and Data Analyst Intern. I use SQL, Power BI, Excel and Python to surface
-              anomalies, concentration risk and control-improvement opportunities.
+            <p class="lead reveal" style="--d: 0.2s">
+              I'm Gabriel Nguyen, a Business Analyst Intern at LeoViAn Capital Fund LP, final-year Business
+              Analytics (Fintech) student at Deakin University and CFA Level 1 candidate. I use SQL, Power BI,
+              Excel and Python to turn large financial and transactional datasets into insights that drive
+              business decisions.
             </p>
-            <div class="hero-actions reveal">
-              <a class="btn btn-coral" href="#projects">View my work</a>
+            <div class="hero-actions reveal" style="--d: 0.3s">
+              <a class="btn btn-coral" href="#projects">View my work <span class="arrow">→</span></a>
               <a class="btn btn-outline" href="#contact">Get in touch</a>
             </div>
           </div>
 
-          <aside class="hero-card reveal" aria-label="Quick facts">
-            <img class="avatar" src="assets/avatar.jpg" width="96" height="96" alt="Portrait of Gabriel Nguyen" />
+          <aside class="hero-card reveal" style="--d: 0.25s" aria-label="Quick facts">
+            <div class="avatar-wrap">
+              <img class="avatar" src="assets/avatar.jpg" width="96" height="96" alt="Portrait of Gabriel Nguyen" />
+              <span class="status-dot" title="Currently interning"></span>
+            </div>
             <p class="card-name">Gabriel Nguyen</p>
-            <p class="card-role">Data Analyst Intern · CFA L1 Candidate</p>
+            <p class="card-role">Business Analyst Intern · CFA L1 Candidate</p>
             <ul class="card-facts">
-              <li><span>Studying</span>B. Business Analytics – Fintech</li>
-              <li><span>Focus</span>Internal Audit · Risk · Assurance</li>
+              <li><span>Currently</span>Business Analyst Intern, LeoViAn Capital Fund LP</li>
+              <li><span>Studying</span>B. Business Analytics (Fintech), Deakin</li>
               <li><span>Toolkit</span>SQL · Power BI · Python · Excel</li>
               <li><span>Certified</span>Microsoft PL-300</li>
             </ul>
           </aside>
         </div>
 
-        <div class="container stats reveal" aria-label="Highlights">
-          <div class="stat"><strong>£1.3B+</strong><span>municipal spend analysed</span></div>
-          <div class="stat"><strong>£5.84M</strong><span>achievable savings identified</span></div>
-          <div class="stat"><strong>540K+</strong><span>retail transactions modelled</span></div>
-          <div class="stat"><strong>3rd</strong><span>Deakin Bowater Business Challenge</span></div>
+        <div class="container stats stagger" aria-label="Highlights">
+          <div class="stat reveal"><strong data-count="1.3" data-decimals="1" data-prefix="£" data-suffix="B+">£1.3B+</strong><span>municipal spend analysed</span></div>
+          <div class="stat reveal"><strong data-count="5.84" data-decimals="2" data-prefix="£" data-suffix="M">£5.84M</strong><span>achievable savings identified</span></div>
+          <div class="stat reveal"><strong data-count="540" data-suffix="K+">540K+</strong><span>retail transactions modelled</span></div>
+          <div class="stat reveal"><strong data-count="3" data-suffix="rd">3rd</strong><span>Deakin Bowater Business Challenge</span></div>
         </div>
       </section>
+
+      <div class="marquee" aria-label="Tools I use">
+        <div class="marquee-track">
+          <ul>
+            <li>SQL</li><li>Power BI</li><li>Python</li><li>DAX</li><li>Advanced Excel</li><li>Tableau</li>
+            <li>PostgreSQL</li><li>Snowflake</li><li>MySQL</li><li>scikit-learn</li><li>AWS</li><li>Azure</li>
+          </ul>
+          <ul aria-hidden="true">
+            <li>SQL</li><li>Power BI</li><li>Python</li><li>DAX</li><li>Advanced Excel</li><li>Tableau</li>
+            <li>PostgreSQL</li><li>Snowflake</li><li>MySQL</li><li>scikit-learn</li><li>AWS</li><li>Azure</li>
+          </ul>
+        </div>
+      </div>
 
       <!-- About -->
       <section class="section" id="about">
         <div class="container about-grid">
           <div>
-            <p class="section-tag">01 — About</p>
-            <h2 class="reveal">Analytical by nature, audit-minded by choice.</h2>
+            <p class="section-tag">01 / About</p>
+            <h2 class="reveal">Analytical by nature, commercial by mindset.</h2>
           </div>
-          <div class="about-body reveal">
-            <p>
-              I'm analytically driven and focused on building a career in <strong>Internal Audit</strong>. My work
-              centres on translating large, complex financial and transactional datasets into risk insights,
-              anomaly detection and practical recommendations that strengthen controls.
+          <div class="about-body">
+            <p class="reveal">
+              I'm a <strong>Business Analyst Intern at LeoViAn Capital Fund LP</strong> and a final-year
+              Business Analytics (Fintech) student. I enjoy translating large, complex financial and
+              transactional datasets into clear insights, from spotting anomalies and concentration risk to
+              building models that size real savings and growth opportunities.
             </p>
-            <p>
-              I care about data integrity as much as the insight itself — structuring and validating data
-              before analysis so every finding is traceable. I'm comfortable presenting analysis to stakeholders
-              at every level, from teammates to industry judges and client leadership.
+            <p class="reveal">
+              I care about data integrity as much as the insight itself: structuring and validating data before
+              analysis so every finding is traceable. I'm comfortable presenting analysis to stakeholders at
+              every level, from teammates to industry judges and client leadership.
             </p>
-            <div class="edu">
+            <div class="edu reveal">
               <div>
                 <p class="edu-title">Deakin University</p>
-                <p class="edu-sub">Bachelor of Business Analytics – Fintech</p>
+                <p class="edu-sub">Bachelor of Business Analytics (Fintech)</p>
               </div>
-              <p class="edu-date">Jul 2024 – Jul 2027<br /><span>Melbourne, VIC</span></p>
+              <p class="edu-date">Jul 2024 to Jul 2027<br /><span>Melbourne, VIC</span></p>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section class="section section-cream-dark" id="experience">
+        <div class="container">
+          <p class="section-tag">02 / Experience</p>
+          <h2 class="reveal">Where I'm building experience.</h2>
+
+          <ol class="timeline">
+            <li class="timeline-item reveal">
+              <span class="timeline-dot" aria-hidden="true"></span>
+              <div class="timeline-card">
+                <div class="timeline-top">
+                  <span class="badge">Current</span>
+                  <span class="timeline-date">Present</span>
+                </div>
+                <h3>Business Analyst Intern</h3>
+                <p class="timeline-org">LeoViAn Capital Fund LP</p>
+                <p>
+                  Applying business and financial analytics to support the fund's analysis, reporting and
+                  decision-making.
+                </p>
+              </div>
+            </li>
+            <li class="timeline-item reveal">
+              <span class="timeline-dot" aria-hidden="true"></span>
+              <div class="timeline-card">
+                <div class="timeline-top">
+                  <span class="badge badge-navy">Competition</span>
+                  <span class="timeline-date">Sep 2026</span>
+                </div>
+                <h3>Business Consultant, 3rd Place</h3>
+                <p class="timeline-org">Deakin Bowater Business Challenge · Furphy Geelong</p>
+                <p>
+                  Advised a $23M manufacturer on corporate growth strategy and presented recommendations to
+                  industry judges and client leadership.
+                </p>
+              </div>
+            </li>
+          </ol>
         </div>
       </section>
 
       <!-- Projects -->
       <section class="section section-navy" id="projects">
         <div class="container">
-          <p class="section-tag">02 — Selected projects</p>
+          <p class="section-tag">03 / Selected projects</p>
           <h2 class="reveal">Work that turns raw data into decisions.</h2>
 
           <div class="projects">
@@ -143,7 +208,7 @@
               <ul>
                 <li>Processed and validated <b>540K+</b> retail transactions, applying an extended RFM and behavioural analytics framework to test data quality and surface patterns.</li>
                 <li>Applied K-Means clustering to segment a <b>4.3K</b>-user base, isolating a “Champion” cohort responsible for <b>£6.07M (68%)</b> of revenue.</li>
-                <li>Delivered findings via an interactive Power BI dashboard — a repeatable monitoring tool rather than a one-off report.</li>
+                <li>Delivered findings via an interactive Power BI dashboard: a repeatable monitoring tool rather than a one-off report.</li>
               </ul>
             </article>
 
@@ -171,14 +236,14 @@
       <!-- Skills -->
       <section class="section" id="skills">
         <div class="container">
-          <p class="section-tag">03 — Skills</p>
+          <p class="section-tag">04 / Skills</p>
           <h2 class="reveal">The toolkit behind the analysis.</h2>
 
-          <div class="skills">
+          <div class="skills stagger">
             <div class="skill reveal">
-              <h3>Data Analytics &amp; Assurance</h3>
+              <h3>Data Analytics</h3>
               <div class="chips">
-                <span>SQL — CTEs, window functions</span><span>Python</span><span>Pandas</span><span>NumPy</span><span>Advanced Excel</span>
+                <span>SQL: CTEs, window functions</span><span>Python</span><span>Pandas</span><span>NumPy</span><span>Advanced Excel</span>
               </div>
             </div>
             <div class="skill reveal">
@@ -188,9 +253,9 @@
               </div>
             </div>
             <div class="skill reveal">
-              <h3>Financial &amp; Risk Analysis</h3>
+              <h3>Financial &amp; Business Analysis</h3>
               <div class="chips">
-                <span>Financial modeling</span><span>Forecasting</span><span>Vendor / spend concentration</span><span>Payment-anomaly detection</span><span>Data governance</span>
+                <span>Financial modeling</span><span>Forecasting</span><span>Vendor / spend concentration</span><span>Anomaly detection</span><span>Data governance</span>
               </div>
             </div>
             <div class="skill reveal">
@@ -213,16 +278,16 @@
       <!-- Recognition -->
       <section class="section section-cream-dark" id="recognition">
         <div class="container">
-          <p class="section-tag">04 — Recognition</p>
+          <p class="section-tag">05 / Recognition</p>
           <h2 class="reveal">Awards &amp; certifications.</h2>
 
-          <div class="awards">
+          <div class="awards stagger">
             <article class="award reveal">
               <div class="award-top">
                 <span class="badge">Award</span>
                 <span class="award-date">Sep 2026</span>
               </div>
-              <h3>3rd Place — Deakin Bowater Business Challenge</h3>
+              <h3>3rd Place: Deakin Bowater Business Challenge</h3>
               <p class="award-org">Deakin University · Client: Furphy Geelong</p>
               <ul>
                 <li>Advised Furphy Geelong ($23M steel fabrication, galvanising and coatings manufacturer) on a corporate growth strategy.</li>
@@ -240,7 +305,7 @@
               <p class="award-org">Microsoft</p>
               <ul>
                 <li>Validated skills in preparing, modelling and visualising data, and in deploying and maintaining Power BI reports and dashboards.</li>
-                <li>Supports data-driven audit testing and stakeholder reporting.</li>
+                <li>Supports data-driven analysis and stakeholder reporting.</li>
               </ul>
               <a class="text-link" href="https://learn.microsoft.com/api/credentials/share/en-us/HOANGNGUYEN-3703/97096CD718EF45CF?sharingId=3DFCED9A5FA9F53B" target="_blank" rel="noopener">Verify credential ↗</a>
             </article>
@@ -250,17 +315,20 @@
 
       <!-- Contact -->
       <section class="section section-navy contact" id="contact">
+        <div class="blob blob-contact" aria-hidden="true"></div>
         <div class="container contact-inner">
-          <p class="section-tag">05 — Contact</p>
-          <h2 class="reveal">Let's talk about audit, risk &amp; data.</h2>
+          <p class="section-tag">06 / Contact</p>
+          <h2 class="reveal">Let's talk data, strategy &amp; finance.</h2>
           <p class="lead reveal">
-            I'm open to Internal Audit, risk and data analytics opportunities. The fastest way to reach me is email.
+            I'm open to business analyst, data analytics and finance opportunities. The fastest way to reach me
+            is email.
           </p>
           <a class="contact-email reveal" href="mailto:gabrielnguyen2603@gmail.com">gabrielnguyen2603@gmail.com</a>
           <div class="contact-links reveal">
             <a href="https://linkedin.com/in/gabrielhoangnguyen" target="_blank" rel="noopener">LinkedIn ↗</a>
             <a href="https://github.com/gabrielnguyen2603" target="_blank" rel="noopener">GitHub ↗</a>
-            <a href="https://medium.com/@gabrielnguyen2603" target="_blank" rel="noopener">Medium ↗</a>          </div>
+            <a href="https://medium.com/@gabrielnguyen2603" target="_blank" rel="noopener">Medium ↗</a>
+          </div>
         </div>
       </section>
     </main>
