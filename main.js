@@ -39,23 +39,6 @@ document.querySelectorAll(".chips").forEach((group) => {
   [...group.children].forEach((el, i) => (el.style.transitionDelay = `${0.2 + i * 0.05}s`));
 });
 
-function countUp(el) {
-  const target = parseFloat(el.dataset.count);
-  const decimals = parseInt(el.dataset.decimals || "0", 10);
-  const prefix = el.dataset.prefix || "";
-  const suffix = el.dataset.suffix || "";
-  const duration = 1600;
-  const start = performance.now();
-
-  function frame(now) {
-    const t = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - t, 3);
-    el.textContent = prefix + (target * eased).toFixed(decimals) + suffix;
-    if (t < 1) requestAnimationFrame(frame);
-  }
-  requestAnimationFrame(frame);
-}
-
 if ("IntersectionObserver" in window) {
   document.documentElement.classList.add("js");
 
@@ -64,7 +47,6 @@ if ("IntersectionObserver" in window) {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         entry.target.classList.add("visible");
-        if (!reduceMotion) entry.target.querySelectorAll("[data-count]").forEach(countUp);
         revealer.unobserve(entry.target);
       });
     },

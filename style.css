@@ -258,8 +258,7 @@ h3 {
     opacity: 1;
   }
 }
-.hero-grid,
-.stats {
+.hero-grid {
   position: relative;
   z-index: 1;
 }
@@ -412,32 +411,6 @@ h3 {
   letter-spacing: 0.12em;
   color: var(--coral);
   font-weight: 600;
-}
-
-.stats {
-  margin-top: 4.5rem;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-.stat {
-  padding: 1.75rem 1.25rem;
-  border-right: 1px solid var(--line);
-}
-.stat:last-child {
-  border-right: 0;
-}
-.stat strong {
-  display: block;
-  font-family: var(--serif);
-  font-size: 2.2rem;
-  color: var(--navy);
-  line-height: 1.1;
-}
-.stat span {
-  font-size: 0.9rem;
-  color: var(--muted);
 }
 
 /* Sections */
@@ -974,15 +947,6 @@ h3 {
   .hero-card {
     max-width: 420px;
   }
-  .stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .stat:nth-child(2) {
-    border-right: 0;
-  }
-  .stat:nth-child(-n + 2) {
-    border-bottom: 1px solid var(--line);
-  }
   .skills,
   .awards {
     grid-template-columns: 1fr;
@@ -1044,18 +1008,5 @@ h3 {
   .footer-inner {
     flex-direction: column;
     gap: 0.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .stats {
-    grid-template-columns: 1fr;
-  }
-  .stat {
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-  }
-  .stat:last-child {
-    border-bottom: 0;
   }
 }
