@@ -6,10 +6,13 @@
   if (!finePointer || reduceMotion) return;
 
   const SIZE = 32;
-  const SPEED = 220;
-  const FRAME_MS = 100;
+  const BASE_SPEED = 380;
+  const CATCH_UP = 5;
+  const STOP_DISTANCE = 30;
+  const FRAME_MS = 70;
+  const HEART_EVERY_MS = 2600;
   const TRAIL_COLORS = ["#ff6b5b", "#ffb703", "#2ec4b6", "#4cc9f0", "#9b5de5", "#f15bb5"];
-  const TRAIL_GAP = 4;
+  const TRAIL_SPACING = 18;
 
   const sprites = {
     idle: [[-3, -3]],
@@ -32,18 +35,21 @@
   };
 
   function makeLayer(className) {
-    const el = document.createElement("div");
-    el.className = className;
-    el.setAttribute("aria-hidden", "true");
-    document.body.appendChild(el);
-    return el;
+    const wrap = document.createElement("div");
+    wrap.className = className;
+    wrap.setAttribute("aria-hidden", "true");
+    const body = document.createElement("div");
+    body.className = "cat-body";
+    wrap.appendChild(body);
+    document.body.appendChild(wrap);
+    return { wrap, body };
   }
 
   const ghosts = TRAIL_COLORS.map((color, i) => {
-    const el = makeLayer("cat-ghost");
-    el.style.backgroundColor = color;
-    el.style.zIndex = String(998 - i);
-    return el;
+    const layer = makeLayer("cat-ghost");
+    layer.body.style.backgroundColor = color;
+    layer.wrap.style.zIndex = String(998 - i);
+    return layer;
   }).reverse();
   const cat = makeLayer("cat");
 
@@ -58,7 +64,10 @@
   let idleFrame = 0;
   let lastFrame = 0;
   let lastTick = 0;
-  const history = [];
+  let lastHeart = 0;
+  let moving = false;
+  let state = "";
+  const trail = TRAIL_COLORS.map(() => ({ x: catX, y: catY, sprite: spritePos }));
 
   document.addEventListener("mousemove", (e) => {
     mouseX = e.clientX;
@@ -71,9 +80,21 @@
     spritePos = `${x * SIZE}px ${y * SIZE}px`;
   }
 
+  function setState(next) {
+    if (next === state) return;
+    cat.wrap.classList.remove(`is-${state}`);
+    state = next;
+    cat.wrap.classList.add(`is-${state}`);
+  }
+
+  function resetIdle() {
+    idleAnimation = null;
+    idleFrame = 0;
+  }
+
   function idle() {
     idleTime++;
-    if (idleTime > 10 && Math.floor(Math.random() * 200) === 0 && !idleAnimation) {
+    if (idleTime > 40 && Math.floor(Math.random() * 300) === 0 && !idleAnimation) {
       const options = ["sleeping", "scratchSelf"];
       if (catX < 32) options.push("scratchWallW");
       if (catY < 32) options.push("scratchWallN");
@@ -84,34 +105,30 @@
 
     switch (idleAnimation) {
       case "sleeping":
-        if (idleFrame < 8) {
+        setState("sleeping");
+        if (idleFrame < 12) {
           setSprite("tired", 0);
           break;
         }
-        setSprite("sleeping", Math.floor(idleFrame / 4));
-        if (idleFrame > 192) resetIdle();
+        setSprite("sleeping", Math.floor(idleFrame / 6));
+        if (idleFrame > 280) resetIdle();
         break;
       case "scratchWallN":
       case "scratchWallS":
       case "scratchWallE":
       case "scratchWallW":
       case "scratchSelf":
-        setSprite(idleAnimation, idleFrame);
-        if (idleFrame > 9) resetIdle();
+        setState("busy");
+        setSprite(idleAnimation, Math.floor(idleFrame / 1.5));
+        if (idleFrame > 14) resetIdle();
         break;
       default:
+        setState("idle");
         setSprite("idle", 0);
         return;
     }
     idleFrame++;
   }
-
-  function resetIdle() {
-    idleAnimation = null;
-    idleFrame = 0;
-  }
-
-  let moving = false;
 
   function animationStep() {
     frameCount++;
@@ -119,7 +136,7 @@
     const dy = catY - mouseY;
     const dist = Math.hypot(dx, dy);
 
-    if (dist < 48) {
+    if (dist < STOP_DISTANCE + 12) {
       moving = false;
       idle();
       return;
@@ -128,8 +145,9 @@
     resetIdle();
     if (idleTime > 1) {
       moving = false;
+      setState("alert");
       setSprite("alert", 0);
-      idleTime = Math.min(idleTime, 7) - 1;
+      idleTime = idleTime > 40 ? 2 : 0;
       return;
     }
 
@@ -139,22 +157,59 @@
     dir += dx / dist > 0.5 ? "W" : "";
     dir += dx / dist < -0.5 ? "E" : "";
     setSprite(dir, frameCount);
+    setState("running");
     moving = true;
   }
 
+  function spawnHeart() {
+    const heart = document.createElement("span");
+    heart.className = "cat-heart";
+    heart.setAttribute("aria-hidden", "true");
+    heart.textContent = "♥";
+    heart.style.left = `${catX + 6}px`;
+    heart.style.top = `${catY - 30}px`;
+    heart.style.setProperty("--drift", `${Math.random() * 24 - 12}px`);
+    document.body.appendChild(heart);
+    heart.addEventListener("animationend", () => heart.remove());
+  }
+
+  function updateTrail() {
+    if (moving) {
+      let ax = catX;
+      let ay = catY;
+      let sprite = spritePos;
+      for (const p of trail) {
+        const d = Math.hypot(p.x - ax, p.y - ay);
+        if (d > TRAIL_SPACING) {
+          const k = TRAIL_SPACING / d;
+          p.x = ax + (p.x - ax) * k;
+          p.y = ay + (p.y - ay) * k;
+          p.sprite = sprite;
+        }
+        ax = p.x;
+        ay = p.y;
+        sprite = p.sprite;
+      }
+    } else {
+      trail.forEach((p) => {
+        p.x += (catX - p.x) * 0.12;
+        p.y += (catY - p.y) * 0.12;
+      });
+    }
+  }
+
   function render() {
-    cat.style.transform = `translate(${catX - 16}px, ${catY - 16}px)`;
-    cat.style.backgroundPosition = spritePos;
+    cat.wrap.style.transform = `translate(${catX - 16}px, ${catY - 16}px)`;
+    cat.body.style.backgroundPosition = spritePos;
 
     ghosts.forEach((ghost, i) => {
-      const idx = Math.min((ghosts.length - i) * TRAIL_GAP, history.length - 1);
-      const p = history[idx] || { x: catX, y: catY, sprite: spritePos };
+      const p = trail[ghosts.length - 1 - i];
       const offset = Math.hypot(p.x - catX, p.y - catY);
       const fade = (i + 1) / (ghosts.length + 1);
-      ghost.style.transform = `translate(${p.x - 16}px, ${p.y - 16}px)`;
-      ghost.style.webkitMaskPosition = p.sprite;
-      ghost.style.maskPosition = p.sprite;
-      ghost.style.opacity = String(Math.min(1, offset / 24) * (0.25 + fade * 0.55));
+      ghost.wrap.style.transform = `translate(${p.x - 16}px, ${p.y - 16}px)`;
+      ghost.body.style.webkitMaskPosition = p.sprite;
+      ghost.body.style.maskPosition = p.sprite;
+      ghost.wrap.style.opacity = String(Math.min(1, offset / 12) * (0.25 + fade * 0.55));
     });
   }
 
@@ -172,7 +227,8 @@
       const dx = mouseX - catX;
       const dy = mouseY - catY;
       const dist = Math.hypot(dx, dy);
-      const step = Math.min(SPEED * dt, Math.max(dist - 40, 0));
+      const speed = BASE_SPEED + dist * CATCH_UP;
+      const step = Math.min(speed * dt, Math.max(dist - STOP_DISTANCE, 0));
       if (dist > 0) {
         catX += (dx / dist) * step;
         catY += (dy / dist) * step;
@@ -181,8 +237,14 @@
       catY = Math.min(Math.max(16, catY), window.innerHeight - 16);
     }
 
-    history.unshift({ x: catX, y: catY, sprite: spritePos });
-    if (history.length > TRAIL_COLORS.length * TRAIL_GAP + 1) history.pop();
+    if (state === "idle" && now - lastHeart > HEART_EVERY_MS) {
+      lastHeart = now;
+      spawnHeart();
+    } else if (state !== "idle") {
+      lastHeart = now - HEART_EVERY_MS + 900;
+    }
+
+    updateTrail();
 
     render();
     requestAnimationFrame(loop);

@@ -790,21 +790,94 @@ h3 {
 /* Cursor cat */
 .cat,
 .cat-ghost {
+  --chub: scale(1.55, 1.38);
   position: fixed;
   top: 0;
   left: 0;
   width: 32px;
   height: 32px;
   pointer-events: none;
-  image-rendering: pixelated;
   will-change: transform;
 }
 .cat {
   z-index: 999;
+}
+.cat-body {
+  width: 32px;
+  height: 32px;
+  image-rendering: pixelated;
+  transform-origin: 50% 90%;
+  transform: var(--chub);
+}
+.cat .cat-body {
   background-image: url("assets/oneko-tuxedo.png");
+  filter: drop-shadow(0 2px 0 rgba(20, 33, 61, 0.15));
+}
+.cat.is-idle .cat-body {
+  animation: cat-breathe 1.6s ease-in-out infinite;
+}
+.cat.is-sleeping .cat-body {
+  animation: cat-breathe 3.2s ease-in-out infinite;
+}
+.cat.is-running .cat-body {
+  animation: cat-hop 0.28s ease-in-out infinite;
+}
+.cat.is-alert .cat-body {
+  animation: cat-pop 0.2s ease-out;
+}
+@keyframes cat-breathe {
+  0%,
+  100% {
+    transform: scale(1.55, 1.38);
+  }
+  50% {
+    transform: scale(1.66, 1.3) rotate(-2deg);
+  }
+}
+@keyframes cat-hop {
+  0%,
+  100% {
+    transform: var(--chub) translateY(0);
+  }
+  50% {
+    transform: scale(1.5, 1.44) translateY(-2px);
+  }
+}
+@keyframes cat-pop {
+  0% {
+    transform: scale(1.4, 1.6) translateY(-3px);
+  }
+  100% {
+    transform: var(--chub);
+  }
+}
+.cat-heart {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+  color: var(--coral);
+  font-size: 15px;
+  line-height: 1;
+  animation: heart-float 1.6s ease-out forwards;
+}
+@keyframes heart-float {
+  0% {
+    opacity: 0;
+    transform: translate(0, 6px) scale(0.4);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1.15);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--drift, 0px), -34px) scale(0.9);
+  }
 }
 .cat-ghost {
   opacity: 0;
+}
+.cat-ghost .cat-body {
   -webkit-mask-image: url("assets/oneko-tuxedo.png");
   mask-image: url("assets/oneko-tuxedo.png");
   -webkit-mask-repeat: no-repeat;
