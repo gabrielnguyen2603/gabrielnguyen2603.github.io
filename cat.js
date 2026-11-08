@@ -5,7 +5,6 @@
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!finePointer || reduceMotion) return;
 
-  const SPRITE = "assets/oneko.gif";
   const SIZE = 32;
   const SPEED = 220;
   const FRAME_MS = 100;

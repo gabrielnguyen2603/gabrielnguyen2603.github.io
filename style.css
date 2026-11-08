@@ -801,12 +801,12 @@ h3 {
 }
 .cat {
   z-index: 999;
-  background-image: url("assets/oneko.gif");
+  background-image: url("assets/oneko-tuxedo.png");
 }
 .cat-ghost {
   opacity: 0;
-  -webkit-mask-image: url("assets/oneko.gif");
-  mask-image: url("assets/oneko.gif");
+  -webkit-mask-image: url("assets/oneko-tuxedo.png");
+  mask-image: url("assets/oneko-tuxedo.png");
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-size: 256px 128px;
